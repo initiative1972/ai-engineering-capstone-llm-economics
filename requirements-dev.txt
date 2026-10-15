@@ -1,0 +1,4 @@
+# Everything the analysis core needs is in the Python standard library.
+# These are only for linting and testing in CI.
+flake8==7.1.1
+pytest==8.3.3

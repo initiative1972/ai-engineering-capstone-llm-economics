@@ -1,0 +1,79 @@
+{
+  "scenario": "Tier-1 bank grounded compliance assistant",
+  "economics": {
+    "monthly_cost_closed_aud": 10260.0,
+    "monthly_cost_selfhost_aud": 7550.72,
+    "break_even_requests_per_month": 1103906,
+    "cheaper_option": "selfhost",
+    "monthly_saving_aud": 2709.28,
+    "selfhost_capacity_requests_per_month": 23126400,
+    "over_capacity": false,
+    "effective_aud_per_1m_tokens_closed": 27.36,
+    "effective_aud_per_1m_tokens_selfhost": 20.14
+  },
+  "options": {
+    "closed_api": {
+      "quality_score": 0.8792,
+      "meets_quality_bar": true,
+      "governance_score": 0.28,
+      "governance_flags": [
+        "data_residency",
+        "model_transparency",
+        "low_vendor_lock_in"
+      ],
+      "operability_score": 0.925,
+      "monthly_cost_aud": 10260.0
+    },
+    "selfhost_tuned": {
+      "quality_score": 0.9343,
+      "meets_quality_bar": true,
+      "governance_score": 1.0,
+      "governance_flags": [],
+      "operability_score": 0.35,
+      "monthly_cost_aud": 7550.72
+    }
+  },
+  "decision": {
+    "profile": "regulated_enterprise",
+    "weights": {
+      "quality": 0.3,
+      "cost": 0.2,
+      "privacy": 0.4,
+      "complexity": 0.1
+    },
+    "winner": "selfhost_tuned",
+    "deciding_axis": "privacy",
+    "rationale": "selfhost_tuned wins under the 'regulated_enterprise' profile by 0.300, driven mainly by the privacy axis.",
+    "ranked": [
+      {
+        "name": "selfhost_tuned",
+        "axis_scores": {
+          "quality": 0.9343,
+          "cost": 1.0,
+          "privacy": 1.0,
+          "complexity": 0.35
+        },
+        "weighted_total": 0.9153,
+        "disqualified": false,
+        "note": ""
+      },
+      {
+        "name": "closed_api",
+        "axis_scores": {
+          "quality": 0.8792,
+          "cost": 0.7359,
+          "privacy": 0.28,
+          "complexity": 0.925
+        },
+        "weighted_total": 0.6154,
+        "disqualified": false,
+        "note": ""
+      }
+    ]
+  },
+  "sensitivity": {
+    "regulated_enterprise": "selfhost_tuned",
+    "balanced": "selfhost_tuned",
+    "cost_sensitive_startup": "closed_api"
+  }
+}
